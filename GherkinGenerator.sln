@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "CmdApi\Api.csproj", "{8FF06BE8-2594-48CB-B315-DF8A9BBFFF9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gherkin-web", "gherkin-web\gherkin-web.csproj", "{F8DAC3D5-0458-4943-9D14-4E5263D8D448}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gherkin-generator", "gherkin-generator\gherkin-generator.csproj", "{B494B41D-9602-45F6-8FAB-09877AEECB54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +22,10 @@ Global
 		{8FF06BE8-2594-48CB-B315-DF8A9BBFFF9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FF06BE8-2594-48CB-B315-DF8A9BBFFF9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FF06BE8-2594-48CB-B315-DF8A9BBFFF9B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8DAC3D5-0458-4943-9D14-4E5263D8D448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8DAC3D5-0458-4943-9D14-4E5263D8D448}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8DAC3D5-0458-4943-9D14-4E5263D8D448}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8DAC3D5-0458-4943-9D14-4E5263D8D448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B494B41D-9602-45F6-8FAB-09877AEECB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B494B41D-9602-45F6-8FAB-09877AEECB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B494B41D-9602-45F6-8FAB-09877AEECB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B494B41D-9602-45F6-8FAB-09877AEECB54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
