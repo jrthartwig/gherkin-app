@@ -16,7 +16,7 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        public IQueryable<Story> GetStoryByFeature(string feature)
+        public IQueryable<Story> GetStoryByFeature(string feature) // should switch this line to get stor(ies) by feature and use the ID instead of the feature name which means the type is now integer 
         {
             var result = _context.Story.Where(s => s.Feature.Name == feature);
 
