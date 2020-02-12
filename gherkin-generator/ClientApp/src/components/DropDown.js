@@ -2,36 +2,29 @@
 import './Style.css';
 
 function Dropdown(props) {
-    console.log(props)
 
-    const [displayMenu, setDisplayMenu] = useState(); //this is a variable that is an array that has a value and a function -- this is just how useState works 
-    // format is const [value, setValue] = [(ALWAYS)]useState();
-    //toggles drop down menu 
+    const [value, setValue] = useState();
 
-
-    const toggleDropdownMenu = () => {
-        setDisplayMenu(!displayMenu) //! is saying do the opposite of the current state 
+    const handleChange = (e) => {
+        console.log(e.target.value);
+        setValue(e.target.value);
+        props.onChange(e.target.value);
     }
 
-    const handleClick = (item) => {
-        console.log(item)
-        props.handler(item)
-    }
+
 
     return (
         <>
-            <div className="dropdown" style={{ background: "#23344d", width: "200px" }}>
-                <div className="button" onClick={toggleDropdownMenu}>{props.title}</div>
-                {
-                    displayMenu &&
-                    <ul>
-                        {props.options.map(item => {
-                            {/* ^^ this is "mapping" options from the props (specified in    */ }
-                            return <li key={item} onClick={() => handleClick(item)}>{item}</li> 
-                        })}
-                    </ul>
-
-                }
+            <div className="dropdown">
+                <select onChange={handleChange} value={value}>
+                   
+                    {
+                        props.options &&
+                        props.options.map((item, key) => (
+                            <option key={key} value={item}>{item}</option>
+                        ))
+                    }
+                </select>
             </div>
         </>
     )

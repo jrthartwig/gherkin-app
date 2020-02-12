@@ -3,40 +3,23 @@
     display: inline-block;
 }
 
-ul {
+h1 {
+    text-align: center;
+    position: relative;
+    top: 30px;
+}
+
+select {
+    position: relative;
+    top: 50px;
     list-style-type: none;
     margin: 0;
-    padding: 0;
     top: 45px;
     right: 0px;
     width: 200px;
-    background-color: white;
     font-weight: bold;
-    position: absolute;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-}
-
-li a {
-    color: #000;
-    text-decoration: none;
-}
-
-li {
-    padding: 8px 16px;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-    li:last-child {
-        border-bottom: none;
-    }
-
-    li:hover {
-        background-color: #e5e5e5;
-        color: white;
-    }
-
-.button {
     width: 178px;
     height: 50px;
     background-color: #23344d;
@@ -44,11 +27,10 @@ li {
     border-radius: 5px;
     font-weight: bold;
     color: white;
+    margin-right: 30px;
 }
-
-    .button:before {
+    select:before {
         content: "";
-        position: absolute;
         width: 0px;
         height: 0px;
         border: 10px solid;
@@ -57,3 +39,24 @@ li {
         top: 18px;
         background-color: #23344d;
     }
+
+
+option a {
+    color: #000;
+    text-decoration: none;
+}
+
+option {
+    padding: 8px 16px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+    option:last-child {
+        border-bottom: none;
+    }
+
+    option:hover {
+        background-color: #e5e5e5;
+        color: white;
+    }
+
