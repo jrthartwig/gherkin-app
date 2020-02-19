@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import Dropdown from './Dropdown.js'
 
-export default function ConditionalDropdown() {
+export default function ConditionalDropdown(props) {
     const [featureDropdown, setFeatureDropdown] = useState();
     const [storyDropdown, setStoryDropdown] = useState();
     const [story, setStory] = useState();
@@ -50,31 +50,31 @@ export default function ConditionalDropdown() {
         <>
             <h1>Gherkin Generator</h1>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Dropdown title="ProjectType" onChange={handleProjectChange} options={["Sitefinity", "Web", "BI", "eCommerce"]} />
+                <Dropdown name="projectDropdown" onChange={handleProjectChange} options={["Sitefinity", "Web", "eCommerce"]} />
 
 
                 {
                     featureDropdown &&
                     <>
-                        <Dropdown title="Title" onChange={handleFeatureChange} options={featureDropdownOptions[featureDropdown]} />
+                        <Dropdown name="featureDropdown" onChange={handleFeatureChange} options={featureDropdownOptions[featureDropdown]} />
 
                     </>
                 }
 
 
                 {
-                    storyDropdown &&
-                    <>
-                        <Dropdown title="Title" onChange={handleStoryChange} options={storyDropdownOptions[storyDropdown]} />
-                    </>
+                    // storyDropdown &&
+                    // <>
+                    //     <Dropdown title="Title" onChange={handleStoryChange} options={storyDropdownOptions[storyDropdown]} />
+                    // </>
                 }
             </div>
 
             {
-                story &&
-                <>
-                    <p style={{ color: '#fff' }}>{storyOptions[story]}</p>
-                </>
+                // story &&
+                // <>
+                //     <p style={{ color: '#fff' }}>{storyOptions[story]}</p>
+                // </>
             }
 
         </>
