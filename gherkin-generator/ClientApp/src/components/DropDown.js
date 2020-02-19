@@ -6,9 +6,9 @@ function Dropdown(props) {
     const [value, setValue] = useState();
 
     const handleChange = (e) => {
-        console.log(e.target.value);
-        setValue(e.target.value);
-        props.onChange(e.target.value);
+        console.log(e.target.value); //log the value that was selected 
+        setValue(e.target.value); // set value = to the item that was clicked because hooray use state 
+        props.onChange(e.target.value); // what happens when the target changes 
     }
 
 
@@ -16,7 +16,7 @@ function Dropdown(props) {
     return (
         <>
             <div className="dropdown">
-                <select onChange={handleChange} value={value}>
+                <select onChange={handleChange} value={value}> 
                    
                     {
                         props.options &&
