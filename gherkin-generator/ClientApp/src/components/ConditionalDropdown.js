@@ -1,18 +1,35 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import Dropdown from './Dropdown.js'
 
 export default function ConditionalDropdown(props) {
-    const [featureDropdown, setFeatureDropdown] = useState();
+
+    const [projectValue, setProjectValue] = useState();
     const [storyDropdown, setStoryDropdown] = useState();
     const [story, setStory] = useState();
+    const [items, setItems] = useState([]);
 
-    const handleProjectChange = (value) => {
-        setFeatureDropdown(value);
-    }
+    //const handleProjectChange = (value) => {
+    //    fetch(`https://localhost:44347/api/Feature?projectType=${e.target.value}`)
+    //        .then(response => response.json())
+    //        .then(json => setFeatureDropdown([...['Select...'], ...json]))
+    //    console.log()
+    //}
+
+    //const getFeatures = (e) => {
+    //    fetch(`https://localhost:44347/api/Feature?projectType=${e.target.value}`)
+    //        .then(response => response.json())
+    //        .then(json => setFeatureDropdown([...json]))
+    //};
+
 
     const handleFeatureChange = (value) => {
         setStoryDropdown(value);
         console.log(value);
+    }
+
+    const handleProjectChange = (e) => {
+        setProjectValue(e.target.value);
+        console.log(e.target.value);
     }
 
     const handleStoryChange = (value) => {
@@ -49,32 +66,60 @@ export default function ConditionalDropdown(props) {
     return (
         <>
             <h1>Gherkin Generator</h1>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Dropdown name="projectDropdown" onChange={handleProjectChange} options={["Sitefinity", "Web", "eCommerce"]} />
+            <select onChange={handleProjectChange}>
+                <option>Select...</option>
+                <option>Sitefinity</option>
+                <option>Web</option>
+                <option>BI</option>
+            </select> || <select disabled><option>Select...</option></select>
 
-
-                {
-                    featureDropdown &&
-                    <>
-                        <Dropdown name="featureDropdown" onChange={handleFeatureChange} options={featureDropdownOptions[featureDropdown]} />
-
-                    </>
-                }
-
-
-                {
-                    // storyDropdown &&
-                    // <>
-                    //     <Dropdown title="Title" onChange={handleStoryChange} options={storyDropdownOptions[storyDropdown]} />
-                    // </>
-                }
-            </div>
 
             {
-                // story &&
-                // <>
-                //     <p style={{ color: '#fff' }}>{storyOptions[story]}</p>
-                // </>
+                useEffect(() => {
+                    fetch(`https://localhost:44347/api/Feature?projectType=${projectvalue}`, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        method: 'GET'
+                    })
+                        .then(res => { return res.json() })
+                        .then(data => {
+                            setItems(data)
+                        })
+
+                }, [])};
+
+        return (
+        <>
+                <select>
+                    {
+                        items.map((item, key) =>
+                            <option key={key} value={item.id}>
+                                {item.name}
+                            </option>
+                        )
+                    }
+                </select>
+                }
+        </>
+            )
+                                }
+                                }
+
+
+                {
+                storyDropdown &&
+                <>
+                    <Dropdown title="Title" onChange={handleStoryChange} options={storyDropdownOptions[storyDropdown]} />
+                </>
+            }
+
+
+            {
+                story &&
+                <>
+                    <p style={{ color: '#fff' }}>{storyOptions[story]}</p>
+                </>
             }
 
         </>
