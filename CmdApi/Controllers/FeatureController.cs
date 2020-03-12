@@ -12,21 +12,19 @@ namespace Api.Controllers
     [ApiController]
     public class FeatureController : ControllerBase
     {
-        readonly Context _context;
-
-        public FeatureController(Context context)
-        {
-            _context = context;
-        }
-
         [HttpGet]
-        public IQueryable<Feature> GetWebFeaturesByProjectType(string projectType)
+        public List<Feature> GetWebFeaturesByProjectType(string projectType)
         {
-            var projectTypeEnum = (ProjectType)Enum.Parse(typeof(ProjectType), projectType) ;
-            var result = _context.Feature.Where(f => f.ProjectType == projectTypeEnum);
+            var projectTypeEnum = (ProjectType)Enum.Parse(typeof(ProjectType), projectType);
+            var result = new List<Feature>();
+            using (Context context = new Context())
+            {
+                result = context.Feature.Where(f => f.ProjectType == projectTypeEnum).ToList();
 
-            return result;
 
+                return result;
+
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import ConditionalDropdown from './ConditionalDropdown.js';
 
 describe("The conditional dropdown component", () => {  // describe takes a string and a method 
-    let _component 
+    let _component
 
     beforeEach(() => {
         _component = mount(<ConditionalDropdown />)
@@ -15,31 +15,39 @@ describe("The conditional dropdown component", () => {  // describe takes a stri
         expect(projectDropdowns.length).toEqual(1);
     });
 
-    describe("given a project dropdown", () => {        
-        let projectDropdown 
+    describe("given a project dropdown", () => {
+        let projectDropdown
 
         beforeEach(() => {
-            projectDropdown = _component.find("select").at(0);  
+            projectDropdown = _component.find("select").at(0);
         });
 
         describe("and 'Sitefinity' is selected", () => {
             beforeEach(() => {
-                simulateDropdownChange(projectDropdown,"Sitefinity");
+                simulateDropdownChange(projectDropdown, "Sitefinity");
             });
 
             it("shows the feature dropdown", () => {
-                let featureDropdown = _component.find("select");
-                console.log(featureDropdown);
-                expect(featureDropdown.length).toEqual(2);
+                const sitefinityOptions = ["Blog", "Product", "Search"]
+                let featureDropdownOptions = _component.find("select").at(1).find("option");
+                expectOptionsToEqual(featureDropdownOptions, sitefinityOptions);
             });
         });
     });
 
     function simulateDropdownChange(dropdown, value) {
-        dropdown.simulate("change", {target: {value}})
+        dropdown.simulate("change", { target: { value } })
 
     }
 
+    function expectOptionsToEqual(result, expected) {
+        for (let i = 0; i < result.lengh; i++) {
+            if (result[0].text() !== expected[0])
+                return false;
+        }
+        return true;
+    }
 
-}); 
+
+});
 

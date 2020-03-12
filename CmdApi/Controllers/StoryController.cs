@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,21 +9,19 @@ namespace Api.Controllers
     [ApiController]
     public class StoryController : ControllerBase
     {
-        readonly Context _context;
-
-        public StoryController(Context context)
-        {
-            _context = context;
-        }
 
         [HttpGet]
-        public IQueryable<Story> GetStoryByFeature(string feature) // should switch this line to get stor(ies) by feature and use the ID instead of the feature name which means the type is now integer 
+        public List<Story> GetStoryByFeature(string feature) // should switch this line to get stor(ies) by feature and use the ID instead of the feature name which means the type is now integer 
         {
-            var result = _context.Story.Where(s => s.Feature.Name == feature);
+            var result = new List<Story>();
+            using (Context context = new Context())
+            {
+                result = context.Story.Where(s => s.FeatureId == int.Parse(feature)).ToList();
 
-            // _context.Feature.Where(f => f.ProjectType == GetProjectType(projectType)); does the same thing as the line above, but for an unknown reason the line above is (possibly) better
 
-            return result;
+                return result;
+
+            }
 
         }
     }
