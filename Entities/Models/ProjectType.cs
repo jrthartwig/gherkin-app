@@ -4,7 +4,7 @@
     {
         Sitefinity,
         Web,
-        BI
+        BI,
     }
 
 
