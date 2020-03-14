@@ -3,31 +3,28 @@
     display: inline-block;
 }
 
+
 p {
     position: relative;
     top: 100px;
     background-color: #23344d;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
+    color: #fff;
 }
 
-h1 {
+.heading-one {
     text-align: center;
-    position: relative;
-    top: 30px;
+    position: static;
+    padding: 15px 0;
     color: #fff;
     background-color: #23344d;
     font-family: 'Montserrat', sans-serif;
 }
-
 select {
     position: relative;
-    top: 60px;
     list-style-type: none;
-    margin: 0;
-    right: 0px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
     width: 230px;
     height: 50px;
     background-color: #23344d;
@@ -38,17 +35,6 @@ select {
     margin-right: 30px;
     font-family: 'Montserrat', sans-serif;
 }
-    select:before {
-        content: "";
-        width: 0px;
-        height: 0px;
-        border: 10px solid;
-        border-color: white transparent transparent transparent;
-        right: 6px;
-        top: 18px;
-        background-color: #23344d;
-    }
-
 
 option a {
     color: #000;
@@ -68,4 +54,16 @@ option {
         background-color: #e5e5e5;
         color: white;
     }
-
+.flex {
+    display: flex; 
+}
+.flex.space-between {
+    justify-content: space-between;
+}
+.flex.align-center {
+    justify-content: center;
+}
+.select-wrapper {
+    padding-right: 25px;
+    padding-top: 30px;
+}

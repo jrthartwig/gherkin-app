@@ -1,3 +1,4 @@
 ﻿import { getToken } from "./adalConfig";
 
-const headers = { Authorization: `Bearer ${getToken()}` };
+export const headers = { Authorization: `Bearer ${getToken()}` }; // string interpolating "bearer + the token" 
+

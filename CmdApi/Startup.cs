@@ -28,7 +28,7 @@ namespace Api
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("https://localhost:44323");
+                    builder.WithOrigins("*");
                 });
             });
 

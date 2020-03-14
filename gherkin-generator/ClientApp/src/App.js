@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './custom.css';
 import ConditionalDropdown from './components/ConditionalDropdown';
-import SitefinityFeatureDropdown from './components/SitefinityFeatureDropdown';
-import DropDownGroup from './components/MoreDropdowns';
 
+function App(props) {
 
-export default class App extends Component {
-  static displayName = App.name;
-
-  render () {
     return (
-       <ConditionalDropdown/>
+        <div className="gherkin-generator">
+            {
+                <ConditionalDropdown />
+            }
+        </div>
     );
-  }
+
 }
+
+export default App
