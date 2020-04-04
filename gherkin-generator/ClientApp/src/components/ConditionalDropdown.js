@@ -6,17 +6,19 @@ import { headers } from '../adalHeaders';
 export default function ConditionalDropdown(props) {
     const [items, setItems] = useState([]);
     const [stories, setStories] = useState([]);
-    const [gherkin, setGherkin] = useState(); 
+    const [gherkinIndex, setGherkinIndex] = useState();
 
     const handleProjectChange = (e) => {
         fetch(`https://localhost:44347/api/Feature?projectType=${e.target.value}`, {    //hitting my API with implied "GET" 
+            method: 'GET',
             headers: {                                                                  // sending parameters in the header 
                 'Content-Type': 'application/json',
+
                 ...headers                                                              // "..." = "rest spread operator"
             },
         })
             .then(res => { return res.json() })                                         // handling the promise
-            .then(data => {     
+            .then(data => {
                 setItems(data)                                                          //useState setting the items = to the data from the response
             })
             .catch(e => console.log(e));                                                //catching the response 
@@ -36,29 +38,18 @@ export default function ConditionalDropdown(props) {
     };
 
     const handleStoryChange = (e) => {
-        fetch(`https://localhost:44347/api/Story?feature=${e.target.value}`, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'GET'
-        })
-            .then(res => { return res.json() })
-            .then(data => {
-                setGherkin(data)
-            })
-        console.log(e);
+        setGherkinIndex(e.target.value);
+        console.log(stories);
+        console.log(e.target.value);
     };
-
-    
-
 
     return (
         <>
             <h1 className="heading-one">Gherkin Generator</h1>
-            <div className="flex space-between align-center">   
+            <div className="flex space-between align-center">
                 <div className="select-wrapper">
                     <select className="dropdown" onChange={handleProjectChange}>
-                        <option>Select...</option>
+                        <option>Select a Project Type...</option>
                         <option>Sitefinity</option>
                         <option>Web</option>
                         <option>BI</option>
@@ -67,7 +58,7 @@ export default function ConditionalDropdown(props) {
 
                 <div className="select-wrapper">
                     <select onChange={handleFeatureChange}>
-                        <option>Select...</option>
+                        <option>Select a Feature...</option>
                         {
                             items.map((item, key) =>
                                 <option key={key} value={item.id}>
@@ -80,10 +71,10 @@ export default function ConditionalDropdown(props) {
 
                 <div className="select-wrapper">
                     <select onChange={handleStoryChange}>
-                        <option>Select...</option>
+                        <option value="">Select a Story...</option>
                         {
                             stories.map((item, key) =>
-                                <option key={key} value={item.id}>
+                                <option key={key} value={key}>
                                     {item.title}
                                 </option>
                             )
@@ -91,6 +82,14 @@ export default function ConditionalDropdown(props) {
                     </select>
                 </div>
 
+                {
+                    gherkinIndex &&
+
+                    <div className="gherkin">
+                        {stories[gherkinIndex].acceptanceCriteria}
+                    </div>
+
+                }
 
 
             </div>

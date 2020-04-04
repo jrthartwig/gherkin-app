@@ -3,9 +3,18 @@
     display: inline-block;
 }
 
+.gherkin {
+    position: absolute;
+    align-items: center;
+    margin-top: 150px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
 
 p {
-    position: relative;
+    position: absolute;
+    align-items: center;
+    margin-top: 250px;
     top: 100px;
     background-color: #23344d;
     font-family: 'Montserrat', sans-serif;
@@ -21,11 +30,12 @@ p {
     background-color: #23344d;
     font-family: 'Montserrat', sans-serif;
 }
+
 select {
     position: relative;
     list-style-type: none;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    width: 230px;
+    width: 255px;
     height: 50px;
     background-color: #23344d;
     padding: 12px;
