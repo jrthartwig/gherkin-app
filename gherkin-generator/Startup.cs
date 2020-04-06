@@ -1,3 +1,5 @@
+using Api.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -22,8 +24,21 @@ namespace gherkin_generator
         {
 
             services.AddControllersWithViews();
+            services.AddSwaggerDocument();
+            services
+                .AddAuthentication(sharedOptions =>
+                {
+                    sharedOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    var authSettings = Configuration.GetSection("AzureAD").Get<AzureAdOptions>();
 
-           
+
+                    options.Audience = authSettings.ClientId;
+                    options.Authority = authSettings.Authority;
+                });
+
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -47,17 +62,26 @@ namespace gherkin_generator
             }
 
 
+            app.UseAuthentication();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
+
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "api",
+                //    pattern: "api/{controller}/{action}/{id?}");
             });
 
             app.UseSpa(spa =>

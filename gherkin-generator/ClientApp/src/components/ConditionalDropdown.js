@@ -9,7 +9,7 @@ export default function ConditionalDropdown(props) {
     const [gherkinIndex, setGherkinIndex] = useState();
 
     const handleProjectChange = (e) => {
-        fetch(`https://localhost:44347/api/Feature?projectType=${e.target.value}`, {    //hitting my API with implied "GET" 
+        fetch(`/api/Feature?projectType=${e.target.value}`, {    //hitting my API with implied "GET" 
             method: 'GET',
             headers: {                                                                  // sending parameters in the header 
                 'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export default function ConditionalDropdown(props) {
     };
 
     const handleFeatureChange = (e) => {
-        fetch(`https://localhost:44347/api/Story?feature=${e.target.value}`, {
+        fetch(`/api/Story?feature=${e.target.value}`, {
             headers: {
                 'Content-Type': 'application/json',
             },

@@ -12,7 +12,7 @@ namespace Api.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController
+    public class UserController : ControllerBase
     {
         private readonly IIdentityService _identityService;
 
