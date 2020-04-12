@@ -15,7 +15,7 @@ export default function ConditionalDropdown(props) {
             .catch(e => console.log(e));
     }
 
-    const handleStoryChange = (e) => {     
+    const handleStoryChange = (e) => {
         setGherkinIndex(e.target.value);
     };
 
@@ -36,7 +36,7 @@ export default function ConditionalDropdown(props) {
                     <select onChange={handleChange} endpoint="Story?feature=">
                         <option>Select a Feature...</option>
                         {
-                           items && items.map((item, key) =>
+                            items && items.map((item, key) =>
                                 <option key={key} value={item.id}>
                                     {item.name}
                                 </option>
@@ -60,13 +60,10 @@ export default function ConditionalDropdown(props) {
                 </div>
 
                 {
-
-
                     gherkinIndex &&
 
-
                     <div className="gherkin">
-                        {items[gherkinIndex].acceptanceCriteria} 
+                        {items[gherkinIndex].acceptanceCriteria}
                     </div>
 
                 }
