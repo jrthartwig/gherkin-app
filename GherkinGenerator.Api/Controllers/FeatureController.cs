@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
-{
+{   
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FeatureController : ControllerBase
